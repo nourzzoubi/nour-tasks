@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>Nour Tasks</title>
+    <style>
+        .filter-active {
+            background-color: rgb(253 224 71) !important;
+            color: black !important;
+            box-shadow: 0 0 25px rgba(253, 224, 71, 0.25);
+        }
+    </style>
+</head>
+
+<body class="bg-black text-white">
+    <header>
+        <div class="title flex justify-center text-6xl mt-20  font-bold">
+            <span class="material-symbols-outlined text-yellow-300 !text-6xl mr-5">
+                diamond_shine
+            </span>
+            <h1>Nour Tasks</h1>
+        </div>
+        <p class="text-gray-300 text-center text-2xl m-5">Organize your day with a clean and simple task manager</p>
+        <p class="text-yellow-300 text-center text-lg">Stay focused. Stay productive.</p>
+    </header>
+    <main>
+        <section class="px-6 mt-16">
+            <div class="boxes grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+
+                <div class="box bg-sky-900/45 p-8 rounded-3xl min-h-40 flex items-center">
+
+                    <div class="bg-yellow-200/90 text-white w-14 h-14 rounded-xl flex items-center justify-center">
+                        <span class="material-symbols-outlined">format_list_bulleted</span>
+                    </div>
+
+                    <div class="flex-1 text-center">
+                        <h3 class="text-gray-300 text-2xl">Total Tasks</h3>
+                        <p class="num-tasks text-4xl font-bold mt-4">3</p>
+                    </div>
+                </div>
+
+
+                <div class="box bg-sky-900/45 p-8 rounded-3xl min-h-40 flex items-center">
+
+                    <div class="bg-green-400/70 text-white w-14 h-14 rounded-xl flex items-center justify-center">
+                        <span class="material-symbols-outlined">check_circle</span>
+                    </div>
+
+                    <div class="flex-1 text-center">
+                        <h3 class="text-gray-300 text-2xl">Completed</h3>
+                        <p class="num-tasks text-4xl font-bold mt-4">1</p>
+                    </div>
+
+                </div>
+
+                <div class="box bg-sky-900/45 p-8 rounded-3xl min-h-40 flex items-center">
+                    <div class="bg-blue-400/70 text-white w-14 h-14 rounded-xl flex items-center justify-center">
+                        <span class="material-symbols-outlined">more_time</span>
+                    </div>
+                    <div class="flex-1 text-center">
+                        <h3 class="text-gray-300 text-2xl">Remaining</h3>
+                        <p class="num-tasks text-4xl font-bold mt-4">2</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="px-6 mt-10">
+            <div class="bg-sky-900/45 max-w-6xl mx-auto rounded-3xl p-5">
+                <form id="taskForm" action="" class="flex flex-col md:flex-row gap-4">
+
+                    <input type="text" id="taskInput" placeholder="Add a new task..." class="bg-sky-900/60 w-full h-15 rounded-xl px-5 text-white placeholder:text-gray-400
+                        border border-white/40
+                        outline-none
+                        focus:border-yellow-300
+                        focus:ring-4 focus:ring-yellow-300/25
+                        focus:shadow-[0_0_25px_rgba(253,224,71,0.25)]
+                        transition-all duration-300" />
+
+                    <button type="submit"
+                        class="hover:bg-yellow-400 hover:shadow-[0_0_25px_rgba(253,224,71,0.25)] transition-all duration-300 bg-yellow-300 text-black font-bold rounded-xl px-8 h-15 md:w-40 w-full">
+                        Add Task
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <section>
+            <div class="filter-buttons flex justify-around max-w-4xl mx-auto my-10 gap-4
+                [&>button]:bg-gray-600/40
+                [&>button]:px-8
+                [&>button]:py-4
+                [&>button]:rounded-full
+                [&>button]:transition-all
+                [&>button]:duration-300
+                [&>button]:hover:bg-yellow-300
+                [&>button]:hover:text-black
+                [&>button]:hover:shadow-[0_0_25px_rgba(253,224,71,0.25)]">
+
+                <button class="all filter-active">All</button>
+                <button class="active">Active</button>
+                <button class="filter-completed">Completed</button>
+            </div>
+        </section>
+
+        <section class="px-6 mt-6">
+            <div class="tasks max-w-6xl mx-auto bg-sky-900/45 rounded-xl p-5">
+
+                <div class="flex items-center justify-between mb-5">
+                    <h2 class="text-2xl font-bold">Your Tasks</h2>
+                    <span id="tasksCount" class="text-gray-400 text-sm">3 tasks</span>
+                </div>
+
+                <div id="taskList" class="task-list space-y-4">
+
+
+                    <div id="emptyState" class="hidden text-center py-14">
+                        <div
+                            class="mx-auto mb-5 w-24 h-24 rounded-3xl bg-yellow-300/10 border border-yellow-300/20 flex items-center justify-center shadow-[0_0_35px_rgba(253,224,71,0.12)]">
+                            <span class="material-symbols-outlined text-yellow-300 !text-5xl">
+                                auto_awesome
+                            </span>
+                        </div>
+
+                        <h3 class="text-2xl font-bold text-white mb-2">
+                            Your task universe is empty
+                        </h3>
+
+                        <p class="text-gray-400 max-w-md mx-auto">
+                            No tasks right now. Add one mission and start building momentum.
+                        </p>
+
+                        <div class="mt-6 text-yellow-300 text-sm tracking-[0.25em] uppercase">
+                            Ready for your next move
+                        </div>
+                    </div>
+
+
+
+                    <div
+                        class="task-active bg-sky-900/60 border border-white/10 rounded-xl p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+
+                        <div class="flex items-center gap-4">
+                            <button type="button"
+                                class="circle-btn w-6 h-6 rounded-full border-2 border-yellow-300"></button>
+                            <div>
+                                <h3 class="text-lg font-bold">Learn JavaScript Promises</h3>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <span class="bg-yellow-300/20 text-yellow-300 px-3 py-1 rounded-full text-sm">
+                                Pending
+                            </span>
+
+                            <button type="button" class="done-btn text-green-400 hover:text-green-300 transition">
+                                <span class="material-symbols-outlined">check_circle</span>
+                            </button>
+
+                            <button type="button" class="delete-btn text-red-400 hover:text-red-300 transition"> <span
+                                    class="material-symbols-outlined">delete</span>
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="task-active bg-sky-900/60 border border-white/10 rounded-xl p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+
+                        <div class="flex items-center gap-4">
+                            <button type="button"
+                                class="circle-btn w-6 h-6 rounded-full border-2 border-yellow-300"></button>
+                            <div>
+                                <h3 class="text-lg font-bold">Build Nour Tasks UI</h3>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <span class="bg-yellow-300/20 text-yellow-300 px-3 py-1 rounded-full text-sm">
+                                Pending
+                            </span>
+
+                            <button type="button" class="done-btn text-green-400 hover:text-green-300 transition"> <span
+                                    class="material-symbols-outlined">check_circle</span>
+                            </button>
+
+                            <button type="button" class="delete-btn text-red-400 hover:text-red-300 transition"> <span
+                                    class="material-symbols-outlined">delete</span>
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="task-active completed bg-sky-900/60 border border-green-400/30 rounded-xl p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4 opacity-80">
+
+                        <div class="flex items-center gap-4">
+                            <button type="button"
+                                class="circle-btn w-6 h-6 rounded-full bg-green-400 flex items-center justify-center">
+                                <span class="material-symbols-outlined !text-sm text-black">check</span>
+                            </button>
+
+                            <div>
+                                <h3 class="text-lg font-bold line-through text-gray-400">Upload project to GitHub</h3>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <span class="bg-green-400/20 text-green-400 px-3 py-1 rounded-full text-sm">
+                                Completed
+                            </span>
+
+                            <button type="button" class="delete-btn text-red-400 hover:text-red-300 transition">
+                                <span class="material-symbols-outlined">delete</span>
+                            </button>
+                        </div>
+
+                        </>
+
+                    </div>
+
+                </div>
+        </section>
+    </main>
+
+    <footer class="px-6 mt-20 mb-8">
+        <div
+            class="relative max-w-6xl mx-auto overflow-hidden rounded-[2rem] border border-yellow-300/20 bg-sky-950/60 p-8 shadow-[0_0_60px_rgba(14,165,233,0.15)]">
+
+            <!-- Glow circles -->
+            <div class="absolute -top-20 -left-20 w-56 h-56 bg-yellow-300/20 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-24 -right-20 w-72 h-72 bg-sky-400/20 rounded-full blur-3xl"></div>
+
+            <!-- Background grid effect -->
+            <div
+                class="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:40px_40px]">
+            </div>
+
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+
+                <!-- Left -->
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="material-symbols-outlined text-yellow-300 !text-4xl">
+                            diamond_shine
+                        </span>
+                        <h2 class="text-3xl font-bold">Nour Tasks</h2>
+                    </div>
+
+                    <p class="text-gray-400 leading-relaxed">
+                        A tiny black hole for messy tasks. Throw your chaos here,
+                        and let focus come back.
+                    </p>
+                </div>
+
+                <!-- Center strange orbit -->
+                <div class="flex justify-center">
+                    <div
+                        class="relative w-44 h-44 rounded-full border border-yellow-300/30 flex items-center justify-center">
+
+                        <div class="absolute w-32 h-32 rounded-full border border-sky-300/20"></div>
+                        <div class="absolute w-20 h-20 rounded-full border border-white/10"></div>
+
+                        <div
+                            class="w-16 h-16 bg-yellow-300 text-black rounded-2xl flex items-center justify-center rotate-12 shadow-[0_0_35px_rgba(253,224,71,0.45)]">
+                            <span class="material-symbols-outlined !text-4xl">
+                                rocket_launch
+                            </span>
+                        </div>
+
+                        <span
+                            class="absolute top-2 left-8 w-3 h-3 bg-yellow-300 rounded-full shadow-[0_0_20px_rgba(253,224,71,0.9)]"></span>
+                        <span
+                            class="absolute bottom-6 right-5 w-4 h-4 bg-sky-300 rounded-full shadow-[0_0_20px_rgba(125,211,252,0.9)]"></span>
+                        <span class="absolute top-16 right-0 w-2 h-2 bg-white rounded-full"></span>
+                    </div>
+                </div>
+
+                <!-- Right -->
+                <div class="lg:text-right">
+                    <p class="text-yellow-300 text-sm tracking-[0.35em] uppercase mb-3">
+                        Focus Mode
+                    </p>
+
+                    <h3 class="text-2xl font-bold mb-4">
+                        Tasks are temporary. Progress is permanent.
+                    </h3>
+
+                    <div class="flex lg:justify-end gap-3">
+                        <a href="#"
+                            class="w-11 h-11 rounded-full bg-white/10 hover:bg-yellow-300 hover:text-black flex items-center justify-center transition-all duration-300">
+                            <span class="material-symbols-outlined">code</span>
+                        </a>
+
+                        <a href="#"
+                            class="w-11 h-11 rounded-full bg-white/10 hover:bg-yellow-300 hover:text-black flex items-center justify-center transition-all duration-300">
+                            <span class="material-symbols-outlined">terminal</span>
+                        </a>
+
+                        <a href="#"
+                            class="w-11 h-11 rounded-full bg-white/10 hover:bg-yellow-300 hover:text-black flex items-center justify-center transition-all duration-300">
+                            <span class="material-symbols-outlined">bolt</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom line -->
+            <div
+                class="relative z-10 mt-8 pt-5 border-t border-white/10 flex flex-col md:flex-row justify-between gap-3 text-sm text-gray-400">
+                <p>© 2026 Nour Tasks. Built for focused minds.</p>
+                <p class="text-yellow-300">Made with Tailwind CSS ⚡</p>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
