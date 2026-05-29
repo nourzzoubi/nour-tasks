@@ -8,13 +8,13 @@ The app helps users add, complete, delete, filter, and save their daily tasks di
 
 ## 🚀 Live Demo
 
-Coming soon...
+[View Live Demo](https://nourzzoubi.github.io/nour-tasks/)
 
 ---
 
 ## 📸 Project Preview
 
-Coming soon...
+![Nour Tasks Preview](images/preview.png)
 
 ---
 
